@@ -1,6 +1,8 @@
 # ParamCopy
 ParamCopy is a plugin for Substance 3D Designer enabling to perform various operations related to node parameters such as copy/paste and node state storing/recalling.
 
+![alt text](https://github.com/eyosido/ParamCopy/blob/main/doc/ParamCopy-MiniDoc.jpg)
+
 # Use case examples
 - Copy common node Base parameters such as resolution or bit-depth from one node into multiple other nodes.
 - Copy specific node parameters into other nodes of the same type, i.e. to uniformize a distribution, layout or processing between multiple nodes.
