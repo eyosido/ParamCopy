@@ -23,7 +23,9 @@ ParamCopy 1.1.2 requires usage of Substance 3D Designer 12.1 or above.
 # Installation
 - In Substance 3D Designer, open the Plugin Manager (“Tools / Plugin Manager...” menu)
 - Click the "INSTALL..." button and select the .sdplugin file.
+
 The plugin will be installed on your user space (on Windows this is (user home)\Documents\Adobe\Adobe Substance 3D Designer\python\sduserplugins) and enabled in the Plugin Manager. You may disable/enable it in the Plugin Manager at any time.
+
 The plugin creates a ParamCopy menu in the application’s top menu as well as a toolbar in newly created/opened graph.
 
 # Upgrade
@@ -32,8 +34,13 @@ If upgrading from a previous version of the plugin, the latter must first be del
     <user home>\Documents\Adobe\Adobe Substance 3D Designer\python\sduserplugins
 Then, launch Substance 3D Designer to install the new version of the plugin as mentioned above.
 
-# Package Download
+# Package download
 Ready-to-use packages are available in the [releases folder](https://github.com/eyosido/ParamCopy/tree/main/releases).
+
+# Documentation and tutorials
+Documentation is part of the package download and also available in the [doc folder](https://github.com/eyosido/ParamCopy/tree/main/doc).
+
+Tutorial videos up to version 1.1 are [available on Youtube](https://www.youtube.com/playlist?list=PLHiaUQJoD9AVxDR9W-Bg8LwQOfGUm5sTM).
 
 # Build
 To build the .sdplugin file from source, please follow the [procedure](https://substance3d.adobe.com/documentation/sddoc/packaging-plugins-182257149.html) mentioned in the Substance 3D Designer documentation.
