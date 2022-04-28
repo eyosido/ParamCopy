@@ -37,7 +37,7 @@ If upgrading from a previous version of the plugin, the latter must first be del
 Then, launch Substance 3D Designer to install the new version of the plugin as mentioned above.
 
 # Package download
-Ready-to-use packages are available in the [releases folder](https://github.com/eyosido/ParamCopy/tree/main/releases).
+Ready-to-use packages are available in the [releases section](https://github.com/eyosido/ParamCopy/releases).
 
 # Documentation and tutorials
 Documentation is part of the package download and also available in the [doc folder](https://github.com/eyosido/ParamCopy/tree/main/doc).
