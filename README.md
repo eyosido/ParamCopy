@@ -44,5 +44,8 @@ Documentation is part of the package download and also available in the [doc fol
 
 Tutorial videos up to version 1.1 are [available on Youtube](https://www.youtube.com/playlist?list=PLHiaUQJoD9AVxDR9W-Bg8LwQOfGUm5sTM).
 
+# Known issues / limitations
+- Supports only Substance Graphs (texturing graphs).
+
 # Build
 To build the .sdplugin file from source, please follow the [procedure](https://substance3d.adobe.com/documentation/sddoc/packaging-plugins-182257149.html) mentioned in the Substance 3D Designer documentation.
