@@ -4,13 +4,12 @@ ParamCopy is a plugin for Substance 3D Designer enabling to perform various oper
 ![ParamCopy-MiniDoc.jpg](https://github.com/eyosido/ParamCopy/blob/main/doc/ParamCopy-MiniDoc.jpg)
 
 # Use case examples
+- Selectively copy node parameters into other nodes of the same type or different type with similar parameters, i.e. to uniformize a distribution, layout or processing between multiple nodes.
 - Copy common node Base parameters such as resolution or bit-depth from one node into multiple other nodes.
-- Copy specific node parameters into other nodes of the same type, i.e. to uniformize a distribution, layout or processing between multiple nodes.
 - Change the inheritance methods of some parameters by changing them into a source node and pasting into other nodes.
 - Using named clipboards, create and name multiple node configurations that can be pasted into other nodes.
-- Create multiple variations of a selected set of nodes then switch between them for testing different design options. Combine variations with those of other node sets and recall them all at once.
+- Create multiple variations of a selected set of nodes then switch between them to test different design options. Combine variations with those of other node sets and recall them all at once.
 - Create and combine variations for development, testing or demonstration purpose, skim with a few clicks through variations showing multiple states of your Substance and even combine them.
-- Copy/paste parameters between custom or third-party Substances of different types but having similar parameters.
 - Shuffle the randomness of parts your graph by rolling the random seeds of a selection of nodes.
 
 # Features
