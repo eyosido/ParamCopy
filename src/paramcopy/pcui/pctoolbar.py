@@ -6,8 +6,13 @@
 import os, weakref
 from functools import partial
 
-from PySide2.QtCore import QObject
-from PySide2.QtWidgets import QToolBar
+import sd
+if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+    from PySide2.QtCore import QObject
+    from PySide2.QtWidgets import QToolBar
+else:
+    from PySide6.QtCore import QObject
+    from PySide6.QtWidgets import QToolBar
 
 import sd
 from sd.context import Context

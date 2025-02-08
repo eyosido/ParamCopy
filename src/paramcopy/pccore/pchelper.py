@@ -5,9 +5,15 @@
 
 import os
 from pathlib import Path
-from PySide2 import QtCore, QtWidgets, QtGui, QtSvg
-from PySide2.QtGui import QPixmap
 
+import sd
+if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+    from PySide2 import QtCore, QtWidgets, QtGui, QtSvg
+    from PySide2.QtGui import QPixmap
+else:
+    from PySide6 import QtCore, QtWidgets, QtGui, QtSvg
+    from PySide6.QtGui import QPixmap
+    
 import sd
 from sd.context import Context
 from sd.api.sdapplication import SDApplication

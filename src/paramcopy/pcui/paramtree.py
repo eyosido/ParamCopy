@@ -3,10 +3,16 @@
 # (c) 2019-2022 Eyosido Software SARL
 # ---------------
 
-from PySide2 import QtCore, QtWidgets
-from PySide2.QtCore import Qt
-from PySide2.QtWidgets import QTreeWidget, QTreeWidgetItemIterator
-
+import sd
+if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+    from PySide2 import QtCore, QtWidgets
+    from PySide2.QtCore import Qt
+    from PySide2.QtWidgets import QTreeWidget, QTreeWidgetItemIterator
+else:
+    from PySide6 import QtCore, QtWidgets
+    from PySide6.QtCore import Qt
+    from PySide6.QtWidgets import QTreeWidget, QTreeWidgetItemIterator
+    
 from sd.api.sdnode import SDNode
 from sd.api.sdproperty import SDProperty, SDPropertyCategory, SDPropertyInheritanceMethod
 from sd.api.apiexception import APIException

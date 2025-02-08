@@ -6,10 +6,16 @@
 from functools import partial
 import random
 
-from PySide2.QtCore import QObject, Signal, Slot
-from PySide2.QtWidgets import QToolBar, QAction
-from PySide2.QtGui import QIcon, QPixmap, QKeySequence
-
+import sd
+if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+    from PySide2.QtCore import QObject, Signal, Slot
+    from PySide2.QtWidgets import QToolBar, QAction
+    from PySide2.QtGui import QIcon, QPixmap, QKeySequence
+else:
+    from PySide6.QtCore import QObject, Signal, Slot
+    from PySide6.QtWidgets import QToolBar
+    from PySide6.QtGui import QIcon, QPixmap, QKeySequence, QAction
+    
 import sd
 from sd.context import Context
 from sd.api.sdapplication import SDApplication

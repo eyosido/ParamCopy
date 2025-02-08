@@ -3,9 +3,15 @@
 # (c) 2019-2022 Eyosido Software SARL
 # ---------------
 
-from PySide2 import QtCore, QtWidgets
-from PySide2.QtWidgets import QTreeWidget, QTreeWidgetItemIterator, QAbstractItemView
-from PySide2.QtCore import Qt, QTimer
+import sd
+if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+    from PySide2 import QtCore, QtWidgets
+    from PySide2.QtWidgets import QTreeWidget, QTreeWidgetItemIterator, QAbstractItemView
+    from PySide2.QtCore import Qt, QTimer
+else:
+    from PySide6 import QtCore, QtWidgets
+    from PySide6.QtWidgets import QTreeWidget, QTreeWidgetItemIterator, QAbstractItemView
+    from PySide6.QtCore import Qt, QTimer
 
 from paramcopy.pccore import pclog
 from paramcopy.pccore.pcdata import PCData

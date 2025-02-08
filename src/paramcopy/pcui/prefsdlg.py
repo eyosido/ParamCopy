@@ -3,8 +3,13 @@
 # (c) 2019-2022 Eyosido Software SARL
 # ---------------
 
-from PySide2 import QtCore, QtWidgets
-from PySide2.QtCore import Qt
+import sd
+if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+    from PySide2 import QtCore, QtWidgets
+    from PySide2.QtCore import Qt
+else:
+    from PySide6 import QtCore, QtWidgets
+    from PySide6.QtCore import Qt
 
 from paramcopy.pccore import pclog
 from paramcopy.pccore.pcdata import PCData
@@ -19,38 +24,38 @@ class PCPrefsDlg(QtWidgets.QDialog):
         self.setObjectName("PCPrefsDlg")
         self.setWindowFlags(self.windowFlags() & ~Qt.WindowContextHelpButtonHint) # remove the Help icon in title bar
         self.setWindowTitle(PCData.APP_NAME + " - Preferences")
-        self.setFixedSize(571, 426)
+        self.setFixedSize(571, 436)
 
         self.bb_ok_cancel = QtWidgets.QDialogButtonBox(self)
-        self.bb_ok_cancel.setGeometry(QtCore.QRect(220, 390, 341, 32))
+        self.bb_ok_cancel.setGeometry(QtCore.QRect(220, 400, 341, 32))
         self.bb_ok_cancel.setOrientation(QtCore.Qt.Horizontal)
         self.bb_ok_cancel.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.bb_ok_cancel.setObjectName("bb_ok_cancel")
         self.gp_compute = QtWidgets.QGroupBox(self)
-        self.gp_compute.setGeometry(QtCore.QRect(10, 10, 551, 191))
+        self.gp_compute.setGeometry(QtCore.QRect(10, 10, 551, 220))
         self.gp_compute.setObjectName("gp_compute")
-        self.chk_compute_on_roll = QtWidgets.QCheckBox(self.gp_compute)
-        self.chk_compute_on_roll.setGeometry(QtCore.QRect(10, 160, 311, 20))
-        self.chk_compute_on_roll.setToolTip("")
-        self.chk_compute_on_roll.setObjectName("chk_compute_on_roll")
-        self.chk_compute_on_paste = QtWidgets.QCheckBox(self.gp_compute)
-        self.chk_compute_on_paste.setGeometry(QtCore.QRect(10, 100, 281, 20))
-        self.chk_compute_on_paste.setObjectName("chk_compute_on_paste")
         self.l_compute_desc = QtWidgets.QLabel(self.gp_compute)
-        self.l_compute_desc.setGeometry(QtCore.QRect(10, 20, 531, 71))
+        self.l_compute_desc.setGeometry(QtCore.QRect(10, 25, 531, 85))
         self.l_compute_desc.setWordWrap(True)
         self.l_compute_desc.setObjectName("l_compute_desc")
+        self.chk_compute_on_paste = QtWidgets.QCheckBox(self.gp_compute)
+        self.chk_compute_on_paste.setGeometry(QtCore.QRect(10, 120, 350, 20))
+        self.chk_compute_on_paste.setObjectName("chk_compute_on_paste")
         self.chk_compute_on_var_recall = QtWidgets.QCheckBox(self.gp_compute)
-        self.chk_compute_on_var_recall.setGeometry(QtCore.QRect(10, 130, 261, 17))
+        self.chk_compute_on_var_recall.setGeometry(QtCore.QRect(10, 148, 350, 23))
         self.chk_compute_on_var_recall.setObjectName("chk_compute_on_var_recall")
+        self.chk_compute_on_roll = QtWidgets.QCheckBox(self.gp_compute)
+        self.chk_compute_on_roll.setGeometry(QtCore.QRect(10, 180, 350, 20))
+        self.chk_compute_on_roll.setToolTip("")
+        self.chk_compute_on_roll.setObjectName("chk_compute_on_roll")
         self.chk_optional_confirm = QtWidgets.QCheckBox(self)
-        self.chk_optional_confirm.setGeometry(QtCore.QRect(290, 350, 191, 17))
+        self.chk_optional_confirm.setGeometry(QtCore.QRect(310, 360, 191, 23))
         self.chk_optional_confirm.setObjectName("chk_optional_confirm")
         self.chk_copy_select_all = QtWidgets.QCheckBox(self)
-        self.chk_copy_select_all.setGeometry(QtCore.QRect(20, 350, 231, 17))
+        self.chk_copy_select_all.setGeometry(QtCore.QRect(20, 360, 260, 23))
         self.chk_copy_select_all.setObjectName("chk_copy_select_all")
         self.gb_shortcuts = QtWidgets.QGroupBox(self)
-        self.gb_shortcuts.setGeometry(QtCore.QRect(10, 210, 551, 131))
+        self.gb_shortcuts.setGeometry(QtCore.QRect(10, 225, 551, 131))
         self.gb_shortcuts.setObjectName("gb_shortcuts")
         self.l_shc_copy_marams = QtWidgets.QLabel(self.gb_shortcuts)
         self.l_shc_copy_marams.setGeometry(QtCore.QRect(10, 30, 101, 20))
@@ -93,13 +98,13 @@ class PCPrefsDlg(QtWidgets.QDialog):
         self.le_shc_show_var.setText("")
         self.le_shc_show_var.setObjectName("le_shc_show_var")
         self.l_version = QtWidgets.QLabel(self)
-        self.l_version.setGeometry(QtCore.QRect(20, 390, 201, 16))
+        self.l_version.setGeometry(QtCore.QRect(20, 400, 201, 16))
         self.l_version.setObjectName("l_version")
 
         self.gp_compute.setTitle(QtWidgets.QApplication.translate("PCPrefsDlg", "Graph Computation", None, -1))
         self.chk_compute_on_roll.setText(QtWidgets.QApplication.translate("PCPrefsDlg", "Compute current graph after Roll Random Seed operation", None, -1))
         self.chk_compute_on_paste.setText(QtWidgets.QApplication.translate("PCPrefsDlg", "Compute current graph after a Paste operation", None, -1))
-        self.l_compute_desc.setText(QtWidgets.QApplication.translate("PCPrefsDlg", "The below options determine whether the current graph should be brought up to date (computed) after specific operations, so the effects are visible on the involved nodes. For large graphs, you may want to disable this option if computation takes too long or is not required. It is to be noted nodes for which computation is wanted need to be connected to an Output node, else these options will have no effect.", None, -1))
+        self.l_compute_desc.setText(QtWidgets.QApplication.translate("PCPrefsDlg", "The below options determine whether the current graph should be brought up to date (computed) after specific operations, so the effects are visible on the involved nodes. For large graphs, you may want to disable these options if computation takes too long or is not required. It is to be noted nodes for which computation is wanted need to be connected to an Output node, else these options will have no effect.", None, -1))
         self.chk_compute_on_var_recall.setText(QtWidgets.QApplication.translate("PCPrefsDlg", "Compute current graph after Variation recall", None, -1))
         self.chk_optional_confirm.setToolTip(QtWidgets.QApplication.translate("PCPrefsDlg", "Optional confirmation dialogs on write operations can be enabled/disabled with this option, they appear on certain occasions with a mention saying they can be disabled in Preferences.", None, -1))
         self.chk_optional_confirm.setText(QtWidgets.QApplication.translate("PCPrefsDlg", "Enable optional confirmations", None, -1))
