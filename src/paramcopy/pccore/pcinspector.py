@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 from sd.api.sdnode import SDNode

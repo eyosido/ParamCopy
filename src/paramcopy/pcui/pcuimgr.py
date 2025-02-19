@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 from functools import partial
@@ -65,6 +65,7 @@ class PCUIMgr(QObject):
         self.newStateDlg = None
         self.statesDlg = None
         self.clipboardsDlg = None
+        self.shortcutsCreated = False
 
     def loadSvgToolbarIcon(self, iconName):
         icon = None
@@ -95,10 +96,13 @@ class PCUIMgr(QObject):
         else:
             pclog.log("ERROR: cannot find toolbar icons")
 
+        self.toolbarMgr.createToolbarForExistingGraphViews()
+
     def removeUI(self):
         if self.toolbarMgr:
             self.toolbarMgr.cleanup()
             self.toolbarMgr = None
+            pclog.log("removeUI() self.toolbarMgr = None")
 
         self.copyDlg = None
         self.pasteDlg = None
@@ -113,6 +117,8 @@ class PCUIMgr(QObject):
         if self.menu:
             self.removeMenu()
             self.menu = None
+
+        self.shortcutsCreated = False
 
     def createToolbar(self):
         toolbar = QToolBar(self.sdUiMgr.getMainWindow())
@@ -188,8 +194,6 @@ class PCUIMgr(QObject):
         action.triggered.connect(self.onPreferences)
         self.menu.addAction(action)
 
-        self.setupShortcuts()
-
     def removeMenu(self):
         if self.menu:
             self.sdUiMgr.deleteMenu(self.menu.objectName())
@@ -209,6 +213,8 @@ class PCUIMgr(QObject):
         self.storeVariationAction.setShortcut(QKeySequence(prefs.storeVariationShortcut))
         self.showVariationAction.setShortcut(QKeySequence(prefs.showVariationsShortcut))
         self.rollRandomSeedAction.setShortcut(QKeySequence(prefs.rollRandomSeedsShortcut))
+        self.shortcutsCreated = True
+        pclog.log("Shortcuts created")
 
     def onCopy(self):
         if not PCHelper.checkCurrentGraph():

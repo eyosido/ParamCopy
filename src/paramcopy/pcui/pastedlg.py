@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 import sd
@@ -31,9 +31,8 @@ class PCPasteDlg(PCParamDlgBase):
 
     def setupStaticFields(self, dlgName, title):
         super().setupStaticFields(dlgName, title)
-        self.resize(500, 600)
+        self.resize(575, 600)
 
-#    def show(self, sourceNode, destNodes):
     def show(self, sourceNodeState, destNodes):
         self.clearStatus()
         self.destNodes = destNodes
@@ -80,7 +79,7 @@ class PCPasteDlg(PCParamDlgBase):
         self.chk_paste_same_id.setGeometry(QtCore.QRect(20, baseY + (2*spacingY), 470, 17))
         self.l_paste_same_id = QtWidgets.QLabel("NOTE: nodes of different types may use a same ID for parametters with different meanings."
             "\nIt is recommended to use this option only with nodes where parameters having a same ID\nalso share a same purpose and scale.", self.gb_advanced)
-        self.l_paste_same_id.setGeometry(QtCore.QRect(20, baseY + (3*spacingY)-10, 470, 60))
+        self.l_paste_same_id.setGeometry(QtCore.QRect(20, baseY + (3*spacingY)-10, 530, 60))
 
         self.chk_same_type.stateChanged.connect(self.onExclusiveChkStateChange)
         self.chk_paste_same_id.stateChanged.connect(self.onExclusiveChkStateChange)
@@ -91,8 +90,13 @@ class PCPasteDlg(PCParamDlgBase):
             other = self.chk_paste_same_id
         else:
             other = self.chk_same_type
+
+        if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+            isChecked = state == Qt.Checked
+        else:
+            isChecked = state == Qt.Checked.value
         
-        if state == Qt.Checked:
+        if isChecked:
             otherNewState = Qt.Unchecked if chk.checkState() == Qt.Checked else Qt.Checked
             other.setCheckState(otherNewState)
 

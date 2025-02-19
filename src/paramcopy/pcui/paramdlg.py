@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 import sd
@@ -152,11 +152,17 @@ class PCParamDlgBase(QtWidgets.QDialog):
         self.gb_advanced.setEnabled(show)
 
     def onShowAdvancedStateChanged(self, state):
-        show = state == Qt.Checked
+        if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+            show = state == Qt.Checked
+        else:
+            show = state == Qt.Checked.value
         self.showAdvancedOptions(show)
 
     def onDisplayParamIds(self, state):
-        show = state == Qt.Checked
+        if sd.getContext().getSDApplication().getVersion() < "14.0.0":
+            show = state == Qt.Checked
+        else:
+            show = state == Qt.Checked.value
         self.treeWidget.showIdCol(show)
 
     def onSelectAll(self):

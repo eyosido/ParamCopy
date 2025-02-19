@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 import importlib
@@ -17,26 +17,26 @@ from paramcopy.pcui import pcuimgr, pctoolbar, paramdlg, copydlg, pastedlg, para
 
 def initializeSDPlugin():
     # module reloads enable modifications without restarting the host, used for development only
-    importlib.reload(pclog)
-    importlib.reload(pcdata)
-    importlib.reload(pchelper)
-    importlib.reload(pcparam)
-    importlib.reload(pccopier)
-    importlib.reload(pcnodeid)
-    importlib.reload(pcprefs)
-    importlib.reload(pcstatemgr)
-    importlib.reload(pcinspector)
+    # importlib.reload(pclog)
+    # importlib.reload(pcdata)
+    # importlib.reload(pchelper)
+    # importlib.reload(pcparam)
+    # importlib.reload(pccopier)
+    # importlib.reload(pcnodeid)
+    # importlib.reload(pcprefs)
+    # importlib.reload(pcstatemgr)
+    # importlib.reload(pcinspector)
 
-    importlib.reload(pcuimgr)
-    importlib.reload(pctoolbar)
-    importlib.reload(paramdlg)
-    importlib.reload(copydlg)
-    importlib.reload(pastedlg)
-    importlib.reload(paramtree)
-    importlib.reload(prefsdlg)
-    importlib.reload(statesdlg)
-    importlib.reload(newstatedlg)
-    importlib.reload(clipboardsdlg)
+    # importlib.reload(pcuimgr)
+    # importlib.reload(pctoolbar)
+    # importlib.reload(paramdlg)
+    # importlib.reload(copydlg)
+    # importlib.reload(pastedlg)
+    # importlib.reload(paramtree)
+    # importlib.reload(prefsdlg)
+    # importlib.reload(statesdlg)
+    # importlib.reload(newstatedlg)
+    # importlib.reload(clipboardsdlg)
 
     cleanGlobals()
     pclog.PCLogger.instance().log(pcdata.PCData.APP_NAME + " starting")

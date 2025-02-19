@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 import os, weakref
@@ -26,17 +26,21 @@ class PCGraphCustomToolbarMgr(QObject):
     """
     Handles a single custom toolbar per graph view used by a single external component
     """
+
+    # class attribute as may be accessed after the instance is deleted (onToolbarDestroyed())
+    toolbars = {} # key: graphViewId, value: weak reference on created toolbar (so we don't prevent Qt to delete the toolbars)
+
     def __init__(self, callback, toolbarIcon):
         super().__init__()
         self.sdApp = sd.getContext().getSDApplication()
         self.sdUiMgr = self.sdApp.getQtForPythonUIMgr()
-        self.toolbars = {} # key: graphViewId, value: weak reference on created toolbar (so we don't prevent Qt to delete the toolbars)
         self.callback = partial(callback) # callback must create/setup a single QToolBar object and return it.
         self.toolbarIcon = toolbarIcon
         self.registerGraphViewCreated()
 
     # --- Public
     def cleanup(self):
+        pclog.log("PCGraphCustomToolbarMgr.cleanup()")
         self.removeAllToolbars()
         if self.graphViewCreatedCbId:
             self.sdUiMgr.unregisterCallback(self.graphViewCreatedCbId)
@@ -48,7 +52,13 @@ class PCGraphCustomToolbarMgr(QObject):
     def removeAllToolbars(self):
         for toolbarRef in self.toolbars.values():
             weakref.proxy(toolbarRef).deleteLater()
-        self.toolbars = {}
+
+    def createToolbarForExistingGraphViews(self):
+        uiMgr = self.sdApp.getUIMgr()
+        count = uiMgr.getGraphViewIDCount()
+        for i in range(0,count):
+            graphViewId = uiMgr.getGraphViewIDAt(i)
+            self.onGraphViewCreated(graphViewId, uiMgr)
 
     def onGraphViewCreated(self, graphViewId, uiMgr):
         if not self.toolbars.get(graphViewId):
@@ -57,7 +67,11 @@ class PCGraphCustomToolbarMgr(QObject):
             self.toolbars[graphViewId] = toolbar
             self.sdUiMgr.addToolbarToGraphView(graphViewId, toolbar, icon = self.toolbarIcon, tooltip = toolbar.toolTip())
 
+        from paramcopy.pcui.pcuimgr import PCUIMgr
+        PCUIMgr.instance().setupShortcuts()
+
     def onToolbarDestroyed(self, graphViewId):
         # self.sender() is not the toolbar object, so we need to look-up by graphViewId
         if self.toolbars.get(graphViewId):
             del self.toolbars[graphViewId]
+

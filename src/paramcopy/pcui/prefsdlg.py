@@ -1,6 +1,6 @@
 # ---------------
 # ParamCopy - Substance 3D Designer plugin
-# (c) 2019-2022 Eyosido Software SARL
+# (c) 2019-2025 Eyosido Software SARL
 # ---------------
 
 import sd
@@ -164,7 +164,9 @@ class PCPrefsDlg(QtWidgets.QDialog):
         self.le_shc_show_var.setText(prefs.showVariationsShortcut)
 
         from paramcopy.pcui.pcuimgr import PCUIMgr
-        PCUIMgr.instance().setupShortcuts()
+        pcUIMgr = PCUIMgr.instance()
+        if not pcUIMgr.shortcutsCreated:
+            pcUIMgr.setupShortcuts()
 
         prefs.save()
 
