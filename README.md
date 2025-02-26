@@ -3,7 +3,7 @@ ParamCopy is a plugin for Substance 3D Designer enabling to perform various oper
 
 Compatible with Substance 3D Designer v12.1.1 to v14+.
 
-![ParamCopy-MiniDoc.jpg](https://github.com/eyosido/ParamCopy/blob/main/doc/ParamCopy-MiniDoc.jpg)
+![ParamCopy-MiniDoc.jpg](https://github.com/eyosido/ParamCopy/blob/main/doc/ParamCopy-MiniDoc.png)
 
 # Use case examples
 - Selectively copy node parameters into other nodes of the same type or different type with similar parameters, i.e. to uniformize a distribution, layout or processing between multiple nodes.
@@ -21,7 +21,7 @@ Compatible with Substance 3D Designer v12.1.1 to v14+.
 - Rolling of random seed Base parameters (i.e. random seeds are assigned to a random value) for a selection of nodes, so their randomness properties are being affected in a random manner. This enables to shuffle multiple nodes at a time to produce new outcomes.
 
 # Requirements
-ParamCopy 1.2 requires usage of Substance 3D Designer 12.1.1 or above.
+ParamCopy 1.2.1 requires usage of Substance 3D Designer 12.1.1 or above.
 
 # Installation
 - In Substance 3D Designer, open the Plugin Manager (“Tools / Plugin Manager...” menu)
