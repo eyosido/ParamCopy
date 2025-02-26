@@ -96,7 +96,8 @@ class PCUIMgr(QObject):
         else:
             pclog.log("ERROR: cannot find toolbar icons")
 
-        self.toolbarMgr.createToolbarForExistingGraphViews()
+        if sd.getContext().getSDApplication().getVersion() >= "14.0.0":
+            self.toolbarMgr.createToolbarForExistingGraphViews()
 
     def removeUI(self):
         if self.toolbarMgr:

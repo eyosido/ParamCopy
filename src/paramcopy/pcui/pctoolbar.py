@@ -54,11 +54,12 @@ class PCGraphCustomToolbarMgr(QObject):
             weakref.proxy(toolbarRef).deleteLater()
 
     def createToolbarForExistingGraphViews(self):
-        uiMgr = self.sdApp.getUIMgr()
-        count = uiMgr.getGraphViewIDCount()
-        for i in range(0,count):
-            graphViewId = uiMgr.getGraphViewIDAt(i)
-            self.onGraphViewCreated(graphViewId, uiMgr)
+        if sd.getContext().getSDApplication().getVersion() >= "14.0.0":
+            uiMgr = self.sdApp.getUIMgr()
+            count = uiMgr.getGraphViewIDCount()
+            for i in range(0,count):
+                graphViewId = uiMgr.getGraphViewIDAt(i)
+                self.onGraphViewCreated(graphViewId, uiMgr)
 
     def onGraphViewCreated(self, graphViewId, uiMgr):
         if not self.toolbars.get(graphViewId):

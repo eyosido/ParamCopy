@@ -8,7 +8,7 @@ class PCData:
     TOOLBAR_OBJ_NAME = "paramcopyToolbar"
     TOOLBAR_ICON_SIZE = 24
     PARAM_FUNC_ID = "__func__" # by convention, tells a param is driven by a function
-    VERSION = "1.2"
+    VERSION = "1.2.1"
 
     MENU_TITLE = "ParamCopy"
     MENU_OBJ_NAME = "ParamCopy.menu"
